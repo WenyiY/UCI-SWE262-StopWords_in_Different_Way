@@ -51,7 +51,7 @@ public class Main{
     WordCount wordCount = new WordCount();
     System.out.println("Please enter the file name you want to count the word frequency:");
     Scanner sc = new Scanner(System.in);
-    wordCount.readArticle(sc.nextLine(), stopWords);
+    wordCount.readArticle("../" + sc.nextLine(), stopWords);
     wordCount.printWordCount();
   }
   
