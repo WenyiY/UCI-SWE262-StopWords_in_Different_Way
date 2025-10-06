@@ -46,7 +46,7 @@ public class Main{
   }
 
   public static void main(String[] args) throws IOException{
-    StopWords stopWords = new StopWords("stop_words.txt");
+    StopWords stopWords = new StopWords("../stop_words.txt");
   }
   
 }
