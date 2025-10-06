@@ -22,8 +22,8 @@ author = "agent"
 outputType = "console"
 
 [[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "cd week1 && javac Main.java && java Main"
+task = "workflow.run"
+args = "Run Java"
 
 [[workflows.workflow]]
 name = "JavaCoder"
