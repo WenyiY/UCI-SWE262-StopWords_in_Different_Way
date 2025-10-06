@@ -45,8 +45,14 @@ public class Main{
     }
   }
 
+  /* =================== Main function ===================== */
   public static void main(String[] args) throws IOException{
     StopWords stopWords = new StopWords("../stop_words.txt");
+    WordCount wordCount = new WordCount();
+    System.out.println("Please enter the file name you want to count the word frequency:");
+    Scanner sc = new Scanner(System.in);
+    wordCount.readArticle(sc.nextLine(), stopWords);
+    wordCount.printWordCount();
   }
   
 }

@@ -18,9 +18,9 @@ args = "Run Java"
 name = "Run Java"
 author = "agent"
 
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "javac Main.java && java Main"
-
 [workflows.workflow.metadata]
 outputType = "console"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd week1 && javac Main.java && java Main"
