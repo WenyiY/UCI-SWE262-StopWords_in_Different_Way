@@ -15,13 +15,13 @@ task = "workflow.run"
 args = "Run Java"
 
 [[workflows.workflow]]
-name = "Run Java"
+name = "Run week1"
 author = "agent"
-mode = "sequential"
+mode = "parallel"
 
 [workflows.workflow.metadata]
 outputType = "console"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "cd "
+args = "cd week1 && javac Main.java && java Main"
