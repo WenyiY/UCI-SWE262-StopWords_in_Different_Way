@@ -1,6 +1,6 @@
 # Java Word Frequency Counter
 
-This project contains a Java program that counts word frequencies in text files while filtering out common stop words.
+This project contains a Java program that counts word frequencies in article files while filtering out common stop words.
 
 ## Project Structure
 
@@ -8,10 +8,8 @@ This project contains a Java program that counts word frequencies in text files 
 .
 ├── week1/
 │   ├── Main.java              # Main program with word counting logic
-│   ├── stop_words.txt         # List of stop words to filter out
-│   └── pride-and-prejudice.txt # Sample text file for analysis
 ├── stop_words.txt             # Stop words file in root
-├── pride-and-prejudice.txt    # Sample text in root
+├── pride-and-prejudice.txt    # Sample article in root
 └── README.md                  # This file
 ```
 
