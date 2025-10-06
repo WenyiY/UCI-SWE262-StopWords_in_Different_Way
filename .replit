@@ -3,7 +3,7 @@ modules = ["java-graalvm22.3"]
 expertMode = true
 
 [workflows]
-runButton = "Project"
+runButton = "Run week1"
 
 [[workflows.workflow]]
 name = "Project"
