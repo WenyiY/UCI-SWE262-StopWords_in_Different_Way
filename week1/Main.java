@@ -55,12 +55,16 @@ public class Main{
       }
     }
 
-    // Sort the word count by frequency ascending order, and print them out
-    public void printWordCount(){
+    // Sort the word count by frequency ascending order, and print the top n words out
+    public void printWordCount(int topN){
       List <Map.Entry<String, Integer>> wordList = new ArrayList<>(wordCount.entrySet());
       wordList.sort(Map.Entry.<String, Integer>comparingByValue().reversed());
+      int count = 0;
+      
       for (Map.Entry<String, Integer> list : wordList){
         System.out.println(list.getKey() + "  -  " + list.getValue());
+        count++;
+        if (count >= topN) break;
       }
     }
   }
@@ -72,6 +76,6 @@ public class Main{
     System.out.println("Please enter the file name you want to count the word frequency:");
     Scanner sc = new Scanner(System.in);
     wordCount.readArticle("../" + sc.nextLine(), stopWords);
-    wordCount.printWordCount();
+    wordCount.printWordCount(25);
   }
 }

@@ -17,19 +17,11 @@ args = "Run Java"
 [[workflows.workflow]]
 name = "Run Java"
 author = "agent"
+mode = "sequential"
 
 [workflows.workflow.metadata]
 outputType = "console"
 
 [[workflows.workflow.tasks]]
-task = "workflow.run"
-args = "Run Java"
-
-[[workflows.workflow]]
-name = "JavaCoder"
-mode = "sequential"
-author = 48168938
-
-[[workflows.workflow.tasks]]
-task = "workflow.run"
-args = "Run Java"
+task = "shell.exec"
+args = "cd "
