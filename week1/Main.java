@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.*;
+import java.util.regex.*;
 
 public class Main{
 
@@ -10,13 +11,15 @@ public class Main{
     public StopWords(String fileName) throws IOException{
       stopWords = new HashSet<>();
       try (BufferedReader br = new BufferedReader(new FileReader(fileName))){
-        String word;
-        while ((word = br.readLine()) != null){
-          stopWords.add(word.trim().toLowerCase());
+        String line;
+        while ((line = br.readLine()) != null){
+          String[] words = line.split(",");
+          for (String w : words) stopWords.add(w.toLowerCase());
         }
       }
     }
     public boolean isStopWord(String word){
+      if (word == null || word.isEmpty()) return false;
       return stopWords.contains(word.toLowerCase());
     }
   }
@@ -25,22 +28,39 @@ public class Main{
   static class WordCount {
     private Map<String, Integer> wordCount;
 
+    // Constructor
+    public WordCount(){
+      this.wordCount = new HashMap<>();
+    }
+
     // Read the article and count the word frequency without stop words
     public void readArticle(String fileName, StopWords stopWords) throws IOException {
-      try(Scanner sc = new Scanner(new File(fileName))){
-        while (sc.hasNext()){
-          String revisedWord = sc.next().replaceAll("[^a-zA-Z]", "").toLowerCase();
-          if (!revisedWord.isEmpty() && !stopWords.isStopWord(revisedWord)){
-            wordCount.put(revisedWord, wordCount.getOrDefault(revisedWord, 0) + 1);
+      // find out the punctuation and split the words, such as "Elizabeth's"
+      Pattern wordPattern = Pattern.compile("[A-Za-z]+(?:'[A-Za-z]+)?");
+      
+      try(BufferedReader br = new BufferedReader(new FileReader(fileName))){
+        String line;
+        while ((line = br.readLine()) != null) {
+          Matcher match = wordPattern.matcher(line);
+          while (match.find()){
+            String pureWord = match.group();
+            pureWord = pureWord.replaceAll("'s", ""); // remove "'s"
+            pureWord = pureWord.toLowerCase(); // convert to lower case
+
+            if (!pureWord.isEmpty() && !stopWords.isStopWord(pureWord)){
+              wordCount.put(pureWord, wordCount.getOrDefault(pureWord, 0) + 1);
+            }
           }
         }
       }
     }
 
-    // Print the valid words and their frequency
+    // Sort the word count by frequency ascending order, and print them out
     public void printWordCount(){
-      for (String key : wordCount.keySet()){
-        System.out.println(key + " " + wordCount.get(key));
+      List <Map.Entry<String, Integer>> wordList = new ArrayList<>(wordCount.entrySet());
+      wordList.sort(Map.Entry.<String, Integer>comparingByValue().reversed());
+      for (Map.Entry<String, Integer> list : wordList){
+        System.out.println(list.getKey() + "  -  " + list.getValue());
       }
     }
   }
@@ -54,5 +74,4 @@ public class Main{
     wordCount.readArticle("../" + sc.nextLine(), stopWords);
     wordCount.printWordCount();
   }
-  
 }

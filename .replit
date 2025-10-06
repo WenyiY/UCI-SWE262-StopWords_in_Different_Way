@@ -24,3 +24,12 @@ outputType = "console"
 [[workflows.workflow.tasks]]
 task = "shell.exec"
 args = "cd week1 && javac Main.java && java Main"
+
+[[workflows.workflow]]
+name = "JavaCoder"
+mode = "sequential"
+author = 48168938
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Run Java"
