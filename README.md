@@ -8,6 +8,10 @@ This project contains a Java program that counts word frequencies in article fil
 .
 ├── week1/
 │   ├── Main.java              # Main program with word counting logic
+├── week2/
+│   ├── Four.java              # Main program with 4.1
+│   ├── Five.java              # Main program with 5.1
+│   ├── Six.java               # Main program with 6.1
 ├── stop_words.txt             # Stop words file in root
 ├── pride-and-prejudice.txt    # Sample article in root
 └── README.md                  # This file
@@ -15,26 +19,33 @@ This project contains a Java program that counts word frequencies in article fil
 
 ## How to Run
 
-### Option 1: Using the Run Button (Easiest)
-Simply click the **Run** button at the top of the Replit interface. The workflow is already configured to:
-- Navigate to the `week1/` directory
-- Compile `Main.java`
-- Run the program
-
-### Option 2: Using the Command Line
+### Week 1:
 Open the Shell and run these commands:
 
 ```bash
 cd week1
+```
+```
 javac Main.java
+```
+```
 java Main
 ```
+```
+pride-and-prejudice.txt
+```
 
-### Option 3: Direct Command
-You can also run everything in one line:
+### Week 2:
+**4.1**: Open the Shell and run these commands:
 
 ```bash
-cd week1 && javac Main.java && java Main
+cd week2
+```
+```
+javac Four.java
+```
+```
+java Four ../pride-and-prejudice.txt
 ```
 
 ## How the Program Works
@@ -51,14 +62,14 @@ cd week1 && javac Main.java && java Main
 
 When you run the program:
 1. It will ask: `Please enter the file name you want to count the word frequency:`
-2. Type: `pride-and-prejudice.txt` (or `../pride-and-prejudice.txt` if files are in root)
-3. The program will display all words and their frequencies
+2. Type: `pride-and-prejudice.txt`
+3. The program will display the top 25 words and their frequencies
 
 ## File Paths
 
 The program runs from the `week1/` directory, so:
 - Files in `week1/` can be accessed directly: `filename.txt`
-- Files in the root directory need `../` prefix: `../filename.txt`
+- Files in the root directory need `../` prefix: `../filename.txt` (It is default setted for both txt)
 
 ## Requirements
 

@@ -71,11 +71,17 @@ public class Main{
 
   /* =================== Main function ===================== */
   public static void main(String[] args) throws IOException{
-    StopWords stopWords = new StopWords("../stop_words.txt");
-    WordCount wordCount = new WordCount();
-    System.out.println("Please enter the file name you want to count the word frequency:");
-    Scanner sc = new Scanner(System.in);
-    wordCount.readArticle("../" + sc.nextLine(), stopWords);
-    wordCount.printWordCount(25);
+    try {
+      StopWords stopWords = new StopWords("../stop_words.txt");
+      WordCount wordCount = new WordCount();
+      int topN = 25;
+      System.out.println("Please enter the file name you want to count the word frequency:");
+      Scanner sc = new Scanner(System.in);
+      wordCount.readArticle("../" + sc.nextLine(), stopWords);
+      wordCount.printWordCount(topN);
+    } 
+    catch (IOException e) {
+      System.out.println("Error: " + e.getMessage() + " Please try again.");
+    }
   }
 }
