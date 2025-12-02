@@ -2,14 +2,13 @@ import java.io.*;
 import java.util.*;
 import java.util.regex.*;
 
-public class Five{
-  private static Set<String> stopWords = new HashSet<>();
-  private static Map<String, Integer> wordCount = new HashMap<>();
+public class Six{
   private static final int TOP_N = 25;
   private static final Pattern wordPattern = Pattern.compile("[A-Za-z]+(?:'[A-Za-z]+)?");
-  
+
   // Read the stop words from a file
-  public static void readStopWords(String stopFile) throws IOException{
+  public static Set<String> readStopWords(String stopFile) throws IOException{
+    Set<String> stopWords = new HashSet<>();
     try (BufferedReader br = new BufferedReader(new FileReader(stopFile))){
       String line;
       while ((line = br.readLine()) != null){
@@ -19,9 +18,12 @@ public class Five{
     } catch (IOException e){
       System.out.println("Error: " + e.getMessage());
     }
+    return stopWords;
   }
   // Read the article and count the word frequency without stop words
-  public static void filterFile(String fileName) throws IOException{
+  public static Map<String, Integer> filterFile(String fileName, Set<String> stopWords) throws IOException{
+    Map<String, Integer> wordCount = new HashMap<>();
+
     try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
       String line;
       while ((line = br.readLine()) != null){
@@ -40,6 +42,7 @@ public class Five{
       catch (IOException e){
         System.out.println("Error: " + e.getMessage());
       }
+    return wordCount;
   }
 
   // Sort the word count by frequency ascending order, and print the top n words out
@@ -51,11 +54,9 @@ public class Five{
       System.out.println(entry.getKey() + "  -  " + entry.getValue());
     }
   }
-  
+
   /* =================== Main function ===================== */
   public static void main(String[] args) throws IOException{
-    readStopWords("../stop_words.txt");
-    filterFile(args[0]);
-    printTop25(wordCount);
+    printTop25(filterFile(args[0], readStopWords("../stop_words.txt")));
   }
 }
